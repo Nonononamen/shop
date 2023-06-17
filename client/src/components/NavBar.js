@@ -19,7 +19,7 @@ const NavBar = observer(() => {
     return (
         <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Button variant={"outline-light"} onClick={() => navigate(SHOP_ROUTE)}>КупиДевайс</Button>
+                    <Button variant={"outline-light"} onClick={() => navigate(SHOP_ROUTE)}>Магазин</Button>
                 {user.isAuth ?
                     <Nav className="ms-auto" style={{color: 'white'}}>
                         <Button

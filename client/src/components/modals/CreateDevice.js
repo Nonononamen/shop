@@ -39,6 +39,16 @@ const CreateDevice = observer(({show, onHide}) => {
             return;
         }
 
+        if ( !device.selectedType.id ) {
+            alert('Заполните тип');
+            return;
+        }
+
+        if ( !device.selectedBrand.id ) {
+            alert('Заполните бренд');
+            return;
+        }
+
         // Проверяем, что обязательные поля заполнены
         if (!name || name.trim().length === 0) {
             alert('Введите название устройства');
@@ -102,7 +112,7 @@ const CreateDevice = observer(({show, onHide}) => {
                        </Dropdown.Menu>
                    </Dropdown>
                     <Dropdown className="mt-2 mb-2">
-                        <Dropdown.Toggle>{device.selectedBrand.name || "Выберите тип"}</Dropdown.Toggle>
+                        <Dropdown.Toggle>{device.selectedBrand.name || "Выберите бренд"}</Dropdown.Toggle>
                         <Dropdown.Menu>
                             {device.brands.map(brand =>
                                 <Dropdown.Item

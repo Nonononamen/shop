@@ -4,12 +4,17 @@ import {createBrand} from "../../http/deviceAPI";
 
 const CreateBrand = ({show, onHide}) => {
     const [value, setValue] = useState('')
+    const [error, setError] = useState(false)
 
     const addBrand = () => {
-        createBrand({name: value}).then(data => {
-            setValue('')
-            onHide()
-        })
+        if (value) {
+            createBrand({name: value}).then(data => {
+                setValue('')
+                onHide()
+            })
+        } else {
+            setError(true)
+        }
     }
 
     return (
@@ -20,7 +25,7 @@ const CreateBrand = ({show, onHide}) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Добавить тип
+                    Добавить бренд
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -28,8 +33,12 @@ const CreateBrand = ({show, onHide}) => {
                     <Form.Control
                         value={value}
                         onChange={e => setValue(e.target.value)}
-                        placeholder={"Введите название типа"}
+                        placeholder={"Введите название бренда"}
+                        isInvalid={error}
                     />
+                    <Form.Control.Feedback type="invalid">
+                        Название бренда не может быть пустым.
+                    </Form.Control.Feedback>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
